@@ -10,12 +10,8 @@ void insertion_sort_list(listint_t **list)
 	listint_t *current, *temp, *traverse;
 	char moved = 0;
 
-	if (!list)
-		return;
-	traverse = (*list)->next;
-	current = traverse;
-
-	while(current)
+	current = (*list)->next;
+	while (current)
 	{
 		traverse = current->next;
 		temp = current->prev;
@@ -48,5 +44,4 @@ void insertion_sort_list(listint_t **list)
 		current = traverse;
 		print_list(*list);
 	}
-	return;
 }

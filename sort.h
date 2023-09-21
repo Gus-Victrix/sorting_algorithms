@@ -20,10 +20,17 @@ typedef struct listint_s
     struct listint_s *next;
 } listint_t;
 
+typedef struct elem_s
+{
+	int n;
+	size_t index;
+} elem_t;
+
 /* Functions */
 void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
+void selection_sort(int *array, size_t size);
 
 #endif
