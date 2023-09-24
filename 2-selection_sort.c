@@ -11,6 +11,8 @@ void selection_sort(int *array, size_t size)
 	size_t i, j;
 	elem_t tracker;
 
+	if (!array || size <= 1)
+		return;
 	for (i = 0; i < size - 1; i++)
 	{
 		tracker.n = array[i];
@@ -24,8 +26,11 @@ void selection_sort(int *array, size_t size)
 				tracker.index = j;
 			}
 		}
-		array[tracker.index] = array[i];
-		array[i] = tracker.n;
-		print_array(array, size);
+		if (tracker.index != i)
+		{
+			array[tracker.index] = array[i];
+			array[i] = tracker.n;
+			print_array(array, size);
+		}
 	}
 }
