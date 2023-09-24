@@ -1,44 +1,34 @@
 #include "sort.h"
 
 /**
-* swap - Swap an element of an array with one after it.
-*
-* @array: The array to be manipulated.
-* @idx: The index of element to be swapped.
-*/
-void swap(int *array, int idx)
-{
-	array[idx] ^= array[idx + 1];
-	array[idx + 1] ^= array[idx];
-	array[idx] ^= array[idx + 1];
-}
-
-/**
-* bubble_sort - Apply bubble sort algorithm on an integer array.
-*
-* @array: The array to be sorted.
-* @size: The size of the array.
-*/
+ * bubble_sort - Performs a bubble sort on an array in ascending order.
+ *
+ * @array: Array to be sorted.
+ * @size: Size of the array.
+ */
 void bubble_sort(int *array, size_t size)
 {
-	int i, j, sorted;
+	size_t i, n, newn = 0;
+	char sorted = 1;
 
 	if (!array || size <= 1)
 		return;
-
-	for (i = size - 1; i > 0; i--)
+	n = size;
+	while (sorted && n > 1)
 	{
-		sorted = 1;
-		for (j = 0; j < i; j++)
+		sorted = 0;
+		for (i = 1; i < n; i++)
 		{
-			if (array[j] > array[j + 1])
+			if (array[i] < array[i - 1])
 			{
-				swap(array, j);
-				sorted = 0;
+				array[i] ^= array[i - 1];
+				array[i - 1] ^= array[i];
+				array[i] ^= array[i - 1];
+				sorted = 1;
+				newn = i;
 				print_array(array, size);
 			}
 		}
-		if (sorted)
-			break;
+		n = newn;
 	}
 }
