@@ -1,95 +1,94 @@
 #include "sort.h"
 
 /**
-* swap - Swap two element of an array,
-* the one given by the index, and the one after
-*
-* @array: The array to do some operation
-* @idx1: The idx to swap
-* @idx2: The idx to swap
-*
-* Return: Anything, cause void function
-*/
-void swap(int *array, int idx1, int idx2)
+ * swap - Swaps two emements of an integer array.
+ *
+ * @a: The array of integers.
+ * @i1: The first element index.
+ * @i2: The second element index.
+ * @size: The size of the array.
+ */
+void swap(int *a, size_t i1, size_t i2, size_t size)
 {
-	int tmp;
+	a[i1] ^= a[i2];
+	a[i2] ^= a[i1];
+	a[i1] ^= a[i2];
 
-	tmp = array[idx1];
-	array[idx1] = array[idx2];
-	array[idx2] = tmp;
+	print_array(a, size);
 }
 
 /**
-* partition - Create a partion of the list, sort it using a pivot
-*
-* @arr: The array to sort
-* @low: The idx of the first elem of the array
-* @high: The last elem of the array
-* @size: The global size of the array
-*
-* Return: Anything, cause void function
-*/
-int partition(int *arr, int low, int high, size_t size)
+ * partition - Partitions an array and returns a pivot index.
+ *
+ * @a: Array to be partitioned.
+ * @lo: Lower bound of array to be sorted.
+ * @hi: Upper index of array to be sorted.
+ * @size: Size of the array to be sorted.
+ *
+ * Return: Pivot index.
+ */
+size_t partition(int *a, size_t lo, size_t hi, size_t size)
 {
-	int pivot = arr[high];
-	int i = low;
-	int j;
+	size_t i, j;
+	int pivot_digit;
 
-	for (j = low; j < high; j++)
-	{
-		if (arr[j] < pivot)
+	/* Choosing the last digit as pivot. */
+	pivot_digit = a[hi];
+	/* Temporary pivot index. */
+	i = lo;
+
+	for (j = lo; j < hi; j++)
+		/* If the current element is less than or equal to the pivot. */
+		if (a[j] < pivot_digit)
 		{
+			/* Swap the current element with the element at the temporary index */
 			if (i != j)
-			{
-				swap(arr, i, j);
-				print_array(arr, size);
-			}
+				swap(a, i, j, size);
+			/* Move the temporary pivot index forward. */
 			i++;
 		}
-	}
-	if (arr[high] < arr[i])
-	{
-		swap(arr, i, high);
-		print_array(arr, size);
-	}
+
+	/* Move the pivot element to the correct pivot position (btn sml and lrg)*/
+	if (a[hi] < a[i])
+		swap(a, i, hi, size);
 	return (i);
 }
 
 /**
-* quickSort - Sort an array using Quick sort algo
-*
-* @arr: The array to sort
-* @low: The idx of the first elem of the array
-* @high: The last elem of the array
-* @size: The global size of the array
-*
-* Return: Anything, cause void function
-*/
-void quickSort(int *arr, int low, int high, int size)
+ * quickSort - The recursive module of the quick sort algorithm.
+ *
+ * @a: The array to be sorted.
+ * @lo: The lower bounds of the array.
+ * @hi: The upper bound of the array to be sorted.
+ * @size: The size of the array.
+ */
+void quickSort(int *a, size_t lo, size_t hi, size_t size)
 {
-	int pi;
+	size_t pivot;
 
-	if (low < high)
-	{
-		pi = partition(arr, low, high, size);
+	/* Ensuring the indices are in correct order. */
+	if (lo >= hi || hi >= size)
+		return;
+	/* Finding the index at which to split the array. */
+	pivot = partition(a, lo, hi, size);
 
-		quickSort(arr, low, pi - 1, size);
-		quickSort(arr, pi + 1, high, size);
-	}
+	/* Sorting left of pivot */
+	quickSort(a, lo, pivot - 1, size);
+	/* Sorting right of pivot */
+	quickSort(a, pivot + 1, hi, size);
 }
 
 /**
-* quick_sort - Land into the recursive function of quicksort
-*
-* @array: The array to sort
-* @size: The size of the array
-*
-* Return: Anything, cause void function
-*/
+ * quick_sort - Uses quick sort algorithm to sort an array of integers.
+ *
+ * @array: Array of integers.
+ * @size: Size of the array.
+ */
 void quick_sort(int *array, size_t size)
 {
+	/* Checking if array is NULL or empty or a single item array */
 	if (!array || size <= 1)
 		return;
-
+	/* Calling the recursive bit of quicksort. */
 	quickSort(array, 0, size - 1, size);
 }
