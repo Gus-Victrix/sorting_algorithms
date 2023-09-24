@@ -10,6 +10,9 @@ void insertion_sort_list(listint_t **list)
 	listint_t *current, *temp, *traverse;
 	char moved = 0;
 
+	if (!list || !(*list))
+			return;
+
 	current = (*list)->next;
 	while (current)
 	{
