@@ -11,11 +11,11 @@
 
 <h3>About the code:</h3>
 <hr />
-This code was compiled using:
+* This code was compiled using:
 ```bash
-gcc -Wall -Wextra -Werror -pedantic -std=gnu89 <filename>.c
+	gcc -Wall -Wextra -Werror -pedantic -std=gnu89 <filename>.c
 ```
-during testing.
+
 <h3>Implemented algorithms:</h3>
 <ul>
 <li><h4>Array based:</h4></li>
