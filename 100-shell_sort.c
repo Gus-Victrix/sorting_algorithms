@@ -1,12 +1,12 @@
 #include "sort.h"
 
 /**
-* swap - Swap array elements.
-*
-* @array: The array to be manipulated.
-* @idx1: The first index.
-* @idx2: The second index.
-*/
+ * swap - Swap array elements.
+ *
+ * @array: The array to be manipulated.
+ * @idx1: The first index.
+ * @idx2: The second index.
+ */
 void swap(int *array, int idx1, int idx2)
 {
 
@@ -16,11 +16,11 @@ void swap(int *array, int idx1, int idx2)
 }
 
 /**
-* shell_sort - Shell sort an array using the Knuth sequence.
-*
-* @array: Array to sort.
-* @size: Size of the array.
-*/
+ * shell_sort - Shell sort an array using the Knuth sequence.
+ *
+ * @array: Array to sort.
+ * @size: Size of the array.
+ */
 void shell_sort(int *array, size_t size)
 {
 	size_t gap = 1, i;
