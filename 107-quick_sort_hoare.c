@@ -22,6 +22,8 @@ void _swap(int *a, int *b)
  * @low: The index of the first element of the array.
  * @high: The index of the last element of the array.
  * @size: The size of the larger array.
+ *
+ * Return: Pivot of the partition.
  */
 int partition(int *arr, int low, int high, size_t size)
 {
